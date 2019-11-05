@@ -7,45 +7,46 @@ class Games{
     var assignLeagueName: String
     
     
-    var home_team_city : String
-    var home_team_score : Int
+//    var home_team_city : String
+    var home_team_score : String
     var home_team_name : String
-    var game_time : Int
+    var game_time : String
     var visit_team_name : String
     var visit_team_logo : String
-    var visit_team_score : Int
-    var visit_team_city : String
+    var visit_team_score : String
+//    var visit_team_city : String
     var home_team_logo : String
-//    var dateString: String
+
 
     init(data:JSON,name:String,image:String){
-        game_state="hu"
+
         assignImage=image
         assignLeagueName=name
-//        let date = data["game_time"].intValue
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "EEE, MMM, dd"
-//        self.dateString = formatter.string(from: date)
-        home_team_city=data["home_team_city"].stringValue
-        home_team_name=data["home_team_name"].stringValue
+        game_state=data["game_state"].stringValue
+
+        home_team_name="\(data["home_team_city"].stringValue) \(data["game_state"].stringValue)"
         home_team_logo=data["home_team_logo"].stringValue
         
-        if data["game_time"].intValue > 0{
-            game_time=data["game_time"].intValue
-             home_team_score=data["home_team_score"].intValue
-            visit_team_score=data["visit_team_name"].intValue
+        if game_state == "Final"{
+            game_time="None"
+            home_team_score="\(data["home_team_score"].intValue)"
+            visit_team_score="\(data["visit_team_name"].intValue)"
         }
         else{
-            game_time=0
-             home_team_score=0
-            visit_team_score=0
+            let date = NSDate(timeIntervalSince1970: data["game_time"].doubleValue)
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle=DateFormatter.Style.short
+             home_team_score="\(0)"
+            visit_team_score="\(0)"
+            let localTime = dateFormatter.string(from: date as Date)
+            game_time=localTime
         }
   
                 
                
-        visit_team_name=data["visit_team_name"].stringValue
+        visit_team_name="\(data["visit_team_city"].stringValue) \(data["visit_team_name"].stringValue)"
         visit_team_logo=data["visit_team_logo"].stringValue
-        visit_team_city=data["visit_team_city"].stringValue
+//        visit_team_city=data["visit_team_city"].stringValue
     }
     
     
