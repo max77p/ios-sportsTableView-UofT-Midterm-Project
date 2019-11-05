@@ -14,9 +14,9 @@ class leagueDetailTableViewController: UITableViewController {
     var curIndex:Int?
     var leagues: [Leagues]?//from leagues.swift class
     var taskString: Int?
+    var sportsWeekName:String?
     
     override func viewDidLoad() {
-        self.tasks=["Hockey", "Basketball", "Soccer", "Baseball"]
         if let file=Bundle(for: AppDelegate.self).path(forResource: getRow(rowid: taskString ?? 0), ofType: "json"), let data=NSData(contentsOfFile: file) as Data?{
                    let jsonData=JSON(data: data)
                    self.parseJSON(json: jsonData)
@@ -36,6 +36,7 @@ class leagueDetailTableViewController: UITableViewController {
     //change the file name depending on week clicked
     func getRow(rowid:Int)->
     String{
+        self.sportsWeekName="sports_week_\(rowid+1)"
         return "sports_week_\(rowid+1)"
     }
     
@@ -43,8 +44,7 @@ class leagueDetailTableViewController: UITableViewController {
     
     
 
-        override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//            print(self.leagues?.count ?? 0)//5 items above
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return self.leagues?.count ?? 0
         }
 
@@ -53,7 +53,7 @@ class leagueDetailTableViewController: UITableViewController {
         guard let leagueInfo=leagues?[indexPath.row]else{
             return UITableViewCell()
         }
-        print(leagueInfo.leagueName)
+
         let cell = tableView.dequeueReusableCell(withIdentifier: "plainCell", for: indexPath)
 
         // For a standard cell, use the UITableViewCell properties.
@@ -62,6 +62,25 @@ class leagueDetailTableViewController: UITableViewController {
         return cell
     }
 
+    //prepare to load the games section
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+
+         if let detailView = segue.destination as? gamesTableViewController {
+             
+             detailView.gameTableView = self
+             
+             if let tableViewCell = sender as? UITableViewCell {
+                 
+                 if let index = tableView.indexPath(for: tableViewCell)?.row {
+                     detailView.leagueIndex=index
+                    detailView.weekIndex=taskString
+                    detailView.leagues=leagues
+                    detailView.sportsWeek=sportsWeekName
+                   
+                 }
+             }
+         }
+     }
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9342E5C22370FD8000670B8C /* gamesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342E5C12370FD8000670B8C /* gamesTableViewController.swift */; };
+		9342E5C42371068300670B8C /* gamesFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342E5C32371068300670B8C /* gamesFinder.swift */; };
+		9342E5C623710CE300670B8C /* gamesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9342E5C523710CE300670B8C /* gamesTableViewCell.swift */; };
 		936E7467236B924400342B7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E7466236B924400342B7F /* AppDelegate.swift */; };
 		936E7469236B924400342B7F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 936E7468236B924400342B7F /* SceneDelegate.swift */; };
 		936E746E236B924400342B7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 936E746C236B924400342B7F /* Main.storyboard */; };
@@ -38,6 +41,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9342E5C12370FD8000670B8C /* gamesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamesTableViewController.swift; sourceTree = "<group>"; };
+		9342E5C32371068300670B8C /* gamesFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamesFinder.swift; sourceTree = "<group>"; };
+		9342E5C523710CE300670B8C /* gamesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gamesTableViewCell.swift; sourceTree = "<group>"; };
 		936E7463236B924400342B7F /* sportsTableViewApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sportsTableViewApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		936E7466236B924400342B7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		936E7468236B924400342B7F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +119,9 @@
 				9399F842236CDCA100623CB1 /* leagueDetailTableViewController.swift */,
 				9399F844236CF3BD00623CB1 /* leagues.swift */,
 				9399F846236CFA9100623CB1 /* weekTableViewController.swift */,
+				9342E5C12370FD8000670B8C /* gamesTableViewController.swift */,
+				9342E5C32371068300670B8C /* gamesFinder.swift */,
+				9342E5C523710CE300670B8C /* gamesTableViewCell.swift */,
 			);
 			path = sportsTableViewApp;
 			sourceTree = "<group>";
@@ -231,10 +240,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9342E5C22370FD8000670B8C /* gamesTableViewController.swift in Sources */,
+				9342E5C42371068300670B8C /* gamesFinder.swift in Sources */,
 				9399F845236CF3BD00623CB1 /* leagues.swift in Sources */,
 				9399F847236CFA9100623CB1 /* weekTableViewController.swift in Sources */,
 				936E74A0236BAE1F00342B7F /* SwiftyJSON.swift in Sources */,
 				936E7467236B924400342B7F /* AppDelegate.swift in Sources */,
+				9342E5C623710CE300670B8C /* gamesTableViewCell.swift in Sources */,
 				9399F843236CDCA100623CB1 /* leagueDetailTableViewController.swift in Sources */,
 				936E7469236B924400342B7F /* SceneDelegate.swift in Sources */,
 			);
