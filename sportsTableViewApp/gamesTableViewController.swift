@@ -10,55 +10,66 @@ import UIKit
 
 class gamesTableViewController: UITableViewController {
     weak var gameTableView: leagueDetailTableViewController?
-    var leagues: [AnyObject]?//from leagues.swift class
-    var games: [AnyObject]?//from gamesFinder.swift class
+    var allgames: JSON?//from gamesFinder.swift class
+    
+    var games: [Games]?//
     var leagueIndex: Int?//get the index of league selected
     var weekIndex: Int?//get the index of week
     var sportsWeek:String?//get name of sports week file
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         print(weekIndex ?? 0)
         print(leagueIndex ?? 0)
         print(sportsWeek ?? 0)
+        games=[Games]()
+        //        let gameName:String
+        //        let gameImage:String
+        for (key,value) in allgames?[leagueIndex ?? 0] ?? 0{
+            //                        print(key)
+            //                        print(key)
+            
+            if(key=="games"){
+                for el in value.arrayValue{
+                    //                    print(el)
+                    self.games?.append(Games(data:el,name:"Hockey",image:"hockey"))
+                }
+                
+            }
+            //
+        }
         
-        if let file=Bundle(for: AppDelegate.self).path(forResource: sportsWeek, ofType: "json"), let data=NSData(contentsOfFile: file) as Data?{
-                          let jsonData=JSON(data: data)
-                          self.parseJSON(json: jsonData)
-                      }
-
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
-
-
-    //parse the json and save the types of leagues in leagues array
-    func parseJSON(json:JSON){
-//        games=[Games]()
-        let leagueDataArray=json["leagues"].arrayValue
-        self.games=leagueDataArray[leagueIndex ?? 0]["games"].array as [AnyObject]?
-        print(self.games ?? 0)
-        print(self.games?.count ?? 0)
-    }
-
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-               return self.games?.count ?? 0
-           }
-
-       override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-           guard let gameInfo=games?[indexPath.row]else{
-               return UITableViewCell()
-           }
-
-           let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell", for: indexPath)
-
-           // For a standard cell, use the UITableViewCell properties.
-           cell.textLabel!.text = "test"
-        cell.textLabel!.text = "test2"
-//           cell.imageView!.image = UIImage(named: leagueInfo.leagueImage)
-           return cell
-       }
+        return self.games?.count ?? 0
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell") as? gamesTableViewCell, let gamesData = self.games?[indexPath.row] {
+            cell.setGame(homeTeam: gamesData)
+            return cell
+        }
+        return UITableViewCell()
+        
+        
+        
+    }
+    
+    
+    //        if let cell = tableView.dequeueReusableCell(withIdentifier: "gameCell") as? gamesTableViewCell, let gameInfo = games?[indexPath.row]{
+    //            cell.setGame(homeTeam: [gameInfo])
+    //             return cell
+    //                   }
+    ////        cell.setGame(homeTeam: games![indexPath.row] as! [AnyObject])
+    //         return UITableViewCell()
+    //
+    //       }
+    
     
     //    override func numberOfSections(in tableView: UITableView) -> Int {
     //        // #warning Incomplete implementation, return the number of sections
