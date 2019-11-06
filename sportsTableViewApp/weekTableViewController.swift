@@ -19,15 +19,6 @@ class weekTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        print("row: \(indexPath.row)")
-//    }
-    
-
-//  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//    print("section: \(indexPath)")
-//          print("row: \(indexPath.row)")
-//   }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if let detailView = segue.destination as? leagueDetailTableViewController {
